@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Vitrine de atacado da coleção Oásis Urbano, de Camila Damiani. Monte sua sacola e finalize o pedido pelo WhatsApp.">
+<meta property="og:title" content="Oásis Urbano · Camila Damiani">
+<meta property="og:description" content="Vitrine de atacado. Monte sua sacola e finalize pelo WhatsApp.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/capa.webp">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Vitrine Camila Damiani</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Allura&family=Jost:wght@400;500;600&family=Marcellus&display=swap">
+<style>
+/* Layout: vitrine mobile first. Capa curta com a foto da coleção, barra de categorias fixa,
+   grade de peças por seção, barra da sacola no rodapé e painel da sacola por cima. */
+:root{
+  --bg:#f3ebe3;          /* areia rosada do catálogo */
+  --bed:#e8ddd1;         /* fundo das fotos */
+  --surface:#fbf7f2;     /* painel da sacola */
+  --ink:#3a2620;         /* cacau */
+  --muted:#76574b;
+  --line:rgba(58,38,32,.15);
+  --accent:#12767e;      /* hawlita turquesa */
+  --accent-ink:#ffffff;
+  --accent-tint:#d6ebe9;
+  --gold:#9a6f27;
+  --warn:#8a4b12;
+  --shadow:0 18px 50px rgba(58,38,32,.18);
+  --f-script:"Allura","Brush Script MT",cursive;
+  --f-display:"Marcellus","Optima","Palatino Linotype",serif;
+  --f-ui:"Jost","Avenir Next","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1b1411; --bed:#2a201b; --surface:#231a16; --ink:#f1e6da; --muted:#c8ad9e;
+    --line:rgba(241,230,218,.16); --accent:#4cbcc2; --accent-ink:#0d1f20; --accent-tint:#173a3c;
+    --gold:#d6ad62; --warn:#f0b07a; --shadow:0 18px 50px rgba(0,0,0,.5); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1b1411; --bed:#2a201b; --surface:#231a16; --ink:#f1e6da; --muted:#c8ad9e;
+  --line:rgba(241,230,218,.16); --accent:#4cbcc2; --accent-ink:#0d1f20; --accent-tint:#173a3c;
+  --gold:#d6ad62; --warn:#f0b07a; --shadow:0 18px 50px rgba(0,0,0,.5); color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.caps{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase}
+.num{font-variant-numeric:tabular-nums}
+
+/* Capa */
+.hero{padding-block:20px 28px}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:22px;align-items:center}
+.hero-photo{margin:0;border-radius:6px;overflow:hidden;background:var(--bed);aspect-ratio:4/3;max-width:100%}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block}
+.hero-text{display:grid;gap:14px;min-width:0}
+.eyebrow{color:var(--muted)}
+.script{font-family:var(--f-script);font-weight:400;font-size:clamp(56px,13vw,96px);line-height:.9;margin:0;color:var(--ink)}
+.brand{font-family:var(--f-ui);font-weight:500;letter-spacing:.32em;font-size:13px;text-transform:uppercase;margin-top:-4px}
+.lede{font-size:16px;max-width:42ch;color:var(--muted);margin:0;text-wrap:pretty}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.fact{border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13px}
+.fact b{font-weight:600}
+@media (min-width:820px){
+  .hero{padding-block:36px 40px}
+  .hero-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:48px}
+  .hero-photo{aspect-ratio:5/6;order:2}
+}
+
+/* Barra fixa */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar-in{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:8px 8px;align-items:center;padding-block:10px}
+.bar-in .search{grid-column:1 / -1;grid-row:2}
+@media (min-width:860px){
+  .bar-in{grid-template-columns:minmax(0,1fr) minmax(200px,280px) auto auto}
+  .bar-in .search{grid-column:auto;grid-row:auto}
+}
+@media (max-width:520px){.bag-btn .lbl{display:none}.bag-btn{padding:7px 10px}}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;min-width:0;padding-block:2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--line);background:transparent;border-radius:999px;padding:7px 13px;font-size:14px;cursor:pointer;white-space:nowrap}
+.chip span{color:var(--muted);font-size:12px;margin-left:4px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip[aria-pressed="true"] span{color:inherit;opacity:.75}
+.search{flex:1 1 220px;min-width:0;display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:0 12px;background:var(--surface)}
+.search svg{flex:none;color:var(--muted)}
+.search input{border:0;background:transparent;padding:8px 0;width:100%;min-width:0;font-size:14px}
+.search input:focus{outline:none}
+.search:focus-within{outline:2px solid var(--accent);outline-offset:1px}
+.bag-btn{flex:none;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--ink);background:transparent;border-radius:999px;padding:7px 14px;font-size:14px;cursor:pointer}
+.bag-btn .count{min-width:22px;height:22px;border-radius:11px;background:var(--accent);color:var(--accent-ink);font-size:12px;font-weight:600;display:inline-grid;place-items:center;padding:0 6px}
+
+/* Seções e cards */
+main{padding-block:8px 48px}
+.section{padding-top:30px;scroll-margin-top:80px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 16px;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:18px}
+.sec-head h2{font-family:var(--f-display);font-weight:400;font-size:26px;margin:0;text-wrap:balance}
+.sec-head p{margin:0;color:var(--muted);font-size:14px;max-width:60ch}
+.sub{font-family:var(--f-display);font-size:18px;font-weight:400;margin:26px 0 14px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:28px 16px}
+@media (min-width:700px){.grid{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:36px 22px}}
+.card{display:flex;flex-direction:column;gap:8px;min-width:0}
+.card figure{margin:0;aspect-ratio:4/5;max-width:100%;border-radius:4px;overflow:hidden;background:var(--bed)}
+.card img{width:100%;height:100%;object-fit:contain;display:block}
+.meta{display:grid;gap:3px;min-width:0}
+.ref{color:var(--muted);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.name{font-family:var(--f-display);font-weight:400;font-size:17px;line-height:1.25;margin:0;text-wrap:balance}
+.desc{font-size:13px;color:var(--muted);margin:0;line-height:1.45}
+.opts{display:flex;flex-wrap:wrap;gap:5px;border:0;margin:2px 0 0;padding:0}
+.opts legend{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.opt{border:1px solid var(--line);background:transparent;border-radius:999px;padding:4px 10px;font-size:12.5px;cursor:pointer}
+.opt[aria-checked="true"]{border-color:var(--accent);background:var(--accent-tint);font-weight:500}
+.buy{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:4px;flex-wrap:wrap}
+.price{font-weight:600;font-size:16px}
+.add{border:0;background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:9px 14px;font-weight:500;font-size:14px;cursor:pointer;min-height:40px}
+.add:hover{filter:brightness(1.07)}
+.stepper{display:inline-flex;align-items:center;border:1px solid var(--accent);border-radius:999px;overflow:hidden;min-height:40px}
+.stepper button{border:0;background:transparent;width:36px;height:38px;font-size:18px;cursor:pointer;color:var(--accent)}
+.stepper output{min-width:24px;text-align:center;font-weight:600}
+.empty{padding:40px 0;color:var(--muted);text-align:center}
+
+/* Rodapé da sacola */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--ink);color:var(--bg);
+  padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.dock-in{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.dock-sum{display:grid;gap:4px;min-width:0;flex:1}
+.dock-sum strong{font-size:15px;font-weight:600}
+.meter{height:4px;border-radius:2px;background:rgba(127,127,127,.35);overflow:hidden;max-width:260px}
+.meter i{display:block;height:100%;background:var(--accent);transition:width .25s}
+.dock-note{font-size:12.5px;opacity:.85}
+.dock-btn{flex:none;border:0;background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:11px 18px;font-weight:600;cursor:pointer}
+
+/* Painel da sacola */
+.scrim{position:fixed;inset:0;background:rgba(20,12,10,.45);z-index:40}
+.panel{position:fixed;z-index:41;top:0;right:0;bottom:0;width:min(460px,100%);background:var(--surface);box-shadow:var(--shadow);
+  display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px)}
+.panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 20px 12px;border-bottom:1px solid var(--line);padding-right:max(20px,env(safe-area-inset-right,0px))}
+.panel-head h2{font-family:var(--f-display);font-weight:400;font-size:24px;margin:0}
+.x{border:1px solid var(--line);background:transparent;border-radius:999px;width:40px;height:40px;cursor:pointer;display:grid;place-items:center}
+.panel-body{overflow-y:auto;flex:1;padding:6px 20px 20px;padding-right:max(20px,env(safe-area-inset-right,0px))}
+.items{list-style:none;margin:0;padding:0}
+.item{display:grid;grid-template-columns:60px minmax(0,1fr) auto;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);align-items:start}
+.item img{width:60px;height:75px;object-fit:contain;border-radius:3px;background:var(--bed)}
+.item .name{font-size:15px}
+.item small{display:block;color:var(--muted);font-size:12.5px}
+.item-r{display:grid;justify-items:end;gap:6px}
+.item .stepper{min-height:34px}
+.item .stepper button{width:30px;height:32px}
+.rm{border:0;background:none;color:var(--muted);font-size:12.5px;text-decoration:underline;cursor:pointer;padding:0}
+.totals{display:grid;gap:6px;padding:16px 0}
+.row{display:flex;justify-content:space-between;gap:12px}
+.row.big{font-size:18px;font-weight:600}
+.minline{font-size:13.5px;color:var(--warn);font-weight:500}
+.minline.ok{color:var(--accent)}
+.dados{border-top:1px solid var(--line);padding:16px 0 6px;display:grid;gap:4px}
+.dados h3{font-family:var(--f-display);font-weight:400;font-size:19px;margin:0}
+.dados p{margin:0;font-size:13px;color:var(--muted)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px 0 14px}
+.fields .full{grid-column:1 / -1}
+.fields input[aria-invalid="true"]{border-color:var(--warn);box-shadow:0 0 0 1px var(--warn)}
+.req{color:var(--warn)}
+.err{font-size:12px;color:var(--warn);min-height:0}
+.fields label{display:grid;gap:4px;font-size:12.5px;color:var(--muted);min-width:0}
+.fields input{border:1px solid var(--line);border-radius:6px;padding:9px 10px;background:var(--bg);font-size:15px;width:100%;min-width:0}
+.panel-foot{border-top:1px solid var(--line);padding:14px 20px calc(14px + env(safe-area-inset-bottom,0px));padding-right:max(20px,env(safe-area-inset-right,0px));display:grid;gap:10px}
+.go{display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;border:0;background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:13px 18px;font-weight:600;font-size:15.5px;cursor:pointer;text-align:center}
+.go[aria-disabled="true"]{background:var(--bed);color:var(--muted);cursor:not-allowed;pointer-events:none}
+.foot-row{display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.ghost{border:1px solid var(--line);background:transparent;border-radius:999px;padding:8px 14px;font-size:13.5px;cursor:pointer}
+.textbtn{border:0;background:none;color:var(--muted);font-size:13px;text-decoration:underline;cursor:pointer;padding:4px 0}
+.confirm{display:flex;gap:8px;align-items:center;font-size:13px}
+details.preview{border:1px dashed var(--line);border-radius:6px;padding:8px 12px;margin-top:4px}
+details.preview summary{cursor:pointer;font-size:13.5px;color:var(--muted)}
+details.preview pre{white-space:pre-wrap;word-break:break-word;font-family:var(--f-ui);font-size:13px;margin:8px 0 0}
+.bag-empty{padding:40px 0;text-align:center;color:var(--muted)}
+
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(88px + env(safe-area-inset-bottom,0px));z-index:45;background:var(--surface);color:var(--ink);border:1px solid var(--line);
+  box-shadow:var(--shadow);border-radius:999px;padding:9px 16px;font-size:13.5px;max-width:calc(100% - 32px);text-align:center;transition:opacity .2s}
+.rodape{background:var(--bed);margin-top:20px;padding-bottom:env(safe-area-inset-bottom,0px)}
+body:has(#dock:not([hidden])) .rodape{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+.rod-in{display:grid;grid-template-columns:1fr;gap:22px;padding-block:32px 22px}
+.rod-marca{display:grid;gap:2px;align-content:start}
+.rod-marca .sc{font-family:var(--f-script);font-size:44px;line-height:1}
+.rod-marca .brand{font-size:11.5px;margin:0}
+.rod-info{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px 24px}
+.rod-info li{display:grid;gap:3px;min-width:0;font-size:14.5px}
+.rod-info .caps{font-size:10.5px;color:var(--muted)}
+.rod-info a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px;overflow-wrap:anywhere}
+.rod-info a:hover{text-decoration-thickness:2px}
+.rod-info a.insta{display:inline-flex;align-items:center;gap:10px;text-decoration:none;min-height:44px}
+.rod-info a.insta span:last-child{text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px}
+.ig{flex:none;width:38px;height:38px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;transition:background .2s}
+.rod-info a.insta:hover .ig{background:var(--accent);color:var(--accent-ink)}
+.rod-legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px;border-top:1px solid var(--line);padding-block:14px 18px;font-size:12.5px;color:var(--muted)}
+@media (min-width:860px){.rod-in{grid-template-columns:minmax(220px,300px) minmax(0,1fr);align-items:center}}
+.steps{list-style:none;margin:8px 0 0;padding:16px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;border-top:1px solid var(--line)}
+.steps li{display:grid;gap:4px;font-size:15.5px;line-height:1.4;color:var(--ink);min-width:0}
+.steps b{font-family:var(--f-display);font-weight:400;color:var(--gold);font-size:32px;line-height:1}
+@media (max-width:560px){.steps{grid-template-columns:1fr;gap:12px}.steps li{grid-template-columns:28px minmax(0,1fr);align-items:center;gap:12px}}
+.cat-btn{justify-self:start;margin-top:4px;display:inline-flex;align-items:center;gap:10px;border:1px solid var(--ink);background:transparent;border-radius:999px;padding:10px 18px;font-size:14.5px;font-weight:500;cursor:pointer}
+.cat-btn:hover{background:var(--ink);color:var(--bg)}
+
+/* Leitor do catálogo: sempre escuro, como uma mesa de luz */
+.viewer{--ink:#f1e6da;--muted:#c8ad9e;--line:rgba(241,230,218,.16);--accent:#4cbcc2;--accent-ink:#0d1f20;--accent-tint:#173a3c;--bed:#2a201b;--surface:#211915;--bg:#15100e;
+  color-scheme:dark;position:fixed;inset:0;z-index:35;background:var(--bg);color:var(--ink);display:grid;grid-template-rows:auto minmax(0,1fr) auto;
+  padding-top:env(safe-area-inset-top,0px)}
+.v-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--line)}
+.v-title{display:flex;align-items:baseline;gap:12px;min-width:0}
+.v-title .sc{font-family:var(--f-script);font-size:34px;line-height:1;white-space:nowrap}
+.v-count{color:var(--muted);font-size:13px;white-space:nowrap}
+.v-actions{display:flex;gap:8px;align-items:center}
+.viewer .bag-btn{border-color:var(--line)}
+.viewer .x{border-color:var(--line);color:var(--ink)}
+.v-main{min-height:0;overflow-y:auto;display:grid;grid-template-columns:1fr;align-content:start}
+.v-stage{position:relative;display:grid;place-items:center;padding:12px max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px));touch-action:pan-y}
+.v-stage img{display:block;max-width:100%;max-height:74dvh;width:auto;height:auto;border-radius:2px;box-shadow:0 20px 50px rgba(0,0,0,.55);background:var(--bed);aspect-ratio:1241/1755}
+.v-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:rgba(21,16,14,.72);color:var(--ink);display:grid;place-items:center;cursor:pointer}
+.v-nav.prev{left:max(8px,env(safe-area-inset-left,0px))}
+.v-nav.next{right:max(8px,env(safe-area-inset-right,0px))}
+.v-nav:disabled{opacity:.3;cursor:default}
+.v-side{padding:6px max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(safe-area-inset-left,0px));min-width:0}
+.v-side h3{font-family:var(--f-display);font-weight:400;font-size:19px;margin:0 0 4px}
+.v-side .hint{font-size:13px;color:var(--muted);margin:0}
+.v-list{list-style:none;margin:6px 0 0;padding:0}
+.v-item{display:grid;grid-template-columns:64px minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.v-item img{width:64px;height:80px;object-fit:contain;border-radius:3px}
+.v-item .name{font-size:15.5px}
+.v-item .opts{margin-top:4px}
+.v-item .buy{margin-top:6px}
+.v-thumbs{display:flex;gap:8px;overflow-x:auto;padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));border-top:1px solid var(--line);scrollbar-width:thin}
+.v-thumbs button{flex:none;width:46px;padding:0;border:2px solid transparent;border-radius:3px;background:var(--bed);cursor:pointer;position:relative}
+.v-thumbs img{display:block;width:100%;aspect-ratio:1241/1755;object-fit:cover;border-radius:1px}
+.v-thumbs button[aria-current="true"]{border-color:var(--accent)}
+.v-thumbs button.tem::after{content:"";position:absolute;right:3px;top:3px;width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 1.5px var(--bg)}
+@media (min-width:900px){
+  .v-main{grid-template-columns:minmax(0,1fr) 360px;overflow:hidden}
+  .v-stage{height:100%;min-height:0}
+  .v-stage img{max-height:calc(100dvh - 190px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))}
+  .v-side{overflow-y:auto;border-left:1px solid var(--line);padding-top:18px;padding-left:22px}
+}
+@media (max-width:520px){.v-title .sc{font-size:28px}.viewer .bag-btn .lbl{display:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media (max-width:420px){.fields{grid-template-columns:1fr}}
+</style>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <figure class="hero-photo"><img src="assets/capa.webp" alt="Modelo usando três colares da coleção Oásis Urbano: cordão turquesa com esferas, cordão terracota com pedra azul e corrente com coração de jaspe laranja"></figure>
+    <div class="hero-text">
+      <span class="eyebrow caps">Coleção · Atacado</span>
+      <h1 class="script">Oásis Urbano</h1>
+      <div class="brand">Camila Damiani</div>
+      <p class="lede">Desconecte-se do cinza e encontre o seu Oásis Urbano. Peças autorais com banho de 5 milésimos de ouro 18k e verniz italiano.</p>
+      <div class="facts">
+        <span class="fact"><b>Pedido mínimo:</b> 10 peças</span>
+        <span class="fact"><b>64</b> peças na vitrine</span>
+      </div>
+      <button class="cat-btn" type="button" data-open-cat="1">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 6.5C10 5 7 4.5 3.5 5v13c3.5-.5 6.5 0 8.5 1.5 2-1.5 5-2 8.5-1.5V5C17 4.5 14 5 12 6.5Z"/><path d="M12 6.5v13"/></svg>
+        Folhear o catálogo
+      </button>
+      <ol class="steps" aria-label="Como comprar">
+        <li><b aria-hidden="true">1</b><span>Escolha as peças e a cor de cada uma</span></li>
+        <li><b aria-hidden="true">2</b><span>Revise a sacola e as quantidades</span></li>
+        <li><b aria-hidden="true">3</b><span>Envie a lista pelo WhatsApp para fechar</span></li>
+      </ol>
+    </div>
+  </div>
+</header>
+
+
+<nav class="bar" aria-label="Categorias">
+  <div class="wrap bar-in">
+    <div class="chips" id="chips" role="toolbar" aria-label="Filtrar por categoria"></div>
+    <label class="search" for="q">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Buscar por nome ou ref" autocomplete="off">
+    </label>
+    <button class="bag-btn" id="catTop" type="button" data-open-cat="1" aria-label="Folhear o catálogo">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 6.5C10 5 7 4.5 3.5 5v13c3.5-.5 6.5 0 8.5 1.5 2-1.5 5-2 8.5-1.5V5C17 4.5 14 5 12 6.5Z"/><path d="M12 6.5v13"/></svg>
+      <span class="lbl">Catálogo</span>
+    </button>
+    <button class="bag-btn" id="bagTop" type="button" aria-label="Abrir sacola">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+      <span class="lbl">Sacola</span> <span class="count num" id="bagCount">0</span>
+    </button>
+  </div>
+</nav>
+
+<main class="wrap" id="main"></main>
+<p class="wrap empty" id="none" hidden>Nenhuma peça encontrada. Tente outro nome ou a ref do catálogo.</p>
+
+<footer class="rodape">
+  <div class="wrap rod-in">
+    <div class="rod-marca"><span class="sc">Oásis Urbano</span><span class="brand">Camila Damiani</span></div>
+    <ul class="rod-info">
+      <li><span class="caps">WhatsApp atacado</span><a class="num" href="https://wa.me/5585996752127" target="_blank" rel="noopener">(85) 99675-2127</a></li>
+      <li><span class="caps">Instagram</span><a class="insta" href="https://www.instagram.com/camiladamianiacessorios/" target="_blank" rel="noopener" aria-label="Instagram da Camila Damiani, @camiladamianiacessorios"><span class="ig" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg></span><span>@camiladamianiacessorios</span></a></li>
+      <li><span class="caps">Pedido mínimo</span><span>10 peças, podendo misturar modelos</span></li>
+    </ul>
+  </div>
+  <div class="wrap rod-legal">
+    <span>© 2026 Camila Damiani. Todos os direitos reservados.</span>
+    <span>Valores de atacado da coleção Oásis Urbano. Peças com banho de 5 milésimos de ouro 18k e verniz italiano.</span>
+  </div>
+</footer>
+
+<div class="dock" id="dock" hidden>
+  <div class="dock-in">
+    <div class="dock-sum" aria-live="polite">
+      <strong class="num" id="dockSum">0 peças · R$ 0,00</strong>
+      <div class="meter" aria-hidden="true"><i id="dockMeter" style="width:0%"></i></div>
+      <span class="dock-note" id="dockNote"></span>
+    </div>
+    <button class="dock-btn" id="dockBtn" type="button">Ver sacola</button>
+  </div>
+</div>
+
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Catálogo Oásis Urbano" hidden>
+  <div class="v-head">
+    <div class="v-title"><span class="sc">Oásis Urbano</span><span class="v-count num" id="vCount" aria-live="polite">Página 1 de 42</span></div>
+    <div class="v-actions">
+      <button class="bag-btn" id="vBag" type="button" aria-label="Abrir sacola">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="lbl">Sacola</span> <span class="count num" id="vBagCount">0</span>
+      </button>
+      <button class="x" id="vClose" type="button" aria-label="Fechar catálogo">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="v-main">
+    <div class="v-stage" id="vStage">
+      <img id="vImg" alt="" width="1100" height="1556">
+      <button class="v-nav prev" id="vPrev" type="button" aria-label="Página anterior"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
+      <button class="v-nav next" id="vNext" type="button" aria-label="Próxima página"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
+    </div>
+    <section class="v-side" id="vSide" aria-labelledby="vSideTitle">
+      <h3 id="vSideTitle">Peças desta página</h3>
+      <p class="hint" id="vHint"></p>
+      <ul class="v-list" id="vList"></ul>
+    </section>
+  </div>
+  <div class="v-thumbs" id="vThumbs" aria-label="Páginas do catálogo"></div>
+</div>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="panelTitle" hidden>
+  <div class="panel-head">
+    <h2 id="panelTitle">Sua sacola</h2>
+    <button class="x" id="close" type="button" aria-label="Fechar sacola">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <div class="panel-body">
+    <ul class="items" id="items"></ul>
+    <div id="bagRest">
+      <div class="totals">
+        <div class="row"><span>Peças</span><span class="num" id="tPcs">0</span></div>
+        <div class="row big"><span>Total</span><span class="num" id="tVal">R$ 0,00</span></div>
+        <div class="minline" id="minline"></div>
+      </div>
+      <div class="dados" id="dados">
+        <h3>Seus dados</h3>
+        <p>Vão junto com o pedido para a Camila saber quem está comprando.</p>
+        <div class="fields">
+          <label class="full" for="fNome">Nome completo <span class="req">*</span><input id="fNome" type="text" autocomplete="name" required aria-describedby="eNome"><span class="err" id="eNome"></span></label>
+          <label for="fCidade">Cidade e estado <span class="req">*</span><input id="fCidade" type="text" autocomplete="address-level2" placeholder="Ex.: Fortaleza, CE" required aria-describedby="eCidade"><span class="err" id="eCidade"></span></label>
+          <label for="fLoja">Nome da loja (opcional)<input id="fLoja" type="text" autocomplete="organization"></label>
+          <label for="fEmail">E-mail (opcional)<input id="fEmail" type="email" inputmode="email" autocomplete="email"></label>
+          <label for="fDoc">CPF ou CNPJ (opcional)<input id="fDoc" type="text" inputmode="numeric"></label>
+        </div>
+      </div>
+      <details class="preview"><summary>Ver a mensagem que vai para o WhatsApp</summary><pre id="msg"></pre></details>
+    </div>
+  </div>
+  <div class="panel-foot" id="panelFoot">
+    <a class="go" id="go" href="#" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12Z"/></svg>
+      <span id="goTxt">Finalizar no WhatsApp</span>
+    </a>
+    <div class="foot-row">
+      <button class="ghost" id="copy" type="button">Copiar lista</button>
+      <span id="clearWrap"><button class="textbtn" id="clear" type="button">Esvaziar sacola</button></span>
+    </div>
+  </div>
+</aside>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+const WHATSAPP = "5585996752127";   // só números, com DDI e DDD. Ex.: 5585999999999
+const MIN_PECAS = 10;           // pedido mínimo do atacado
+const IMGS = {"a186d9ac": "assets/pecas/a186d9ac.webp", "d38db3bb": "assets/pecas/d38db3bb.webp", "ba73041b": "assets/pecas/ba73041b.webp", "52eace59": "assets/pecas/52eace59.webp", "3d08ed80": "assets/pecas/3d08ed80.webp", "c4d58a95": "assets/pecas/c4d58a95.webp", "e8db7d9e": "assets/pecas/e8db7d9e.webp", "af90729a": "assets/pecas/af90729a.webp", "1f859504": "assets/pecas/1f859504.webp", "a7740934": "assets/pecas/a7740934.webp", "184422bd": "assets/pecas/184422bd.webp", "c716f291": "assets/pecas/c716f291.webp", "2f2ee03c": "assets/pecas/2f2ee03c.webp", "e5d3718b": "assets/pecas/e5d3718b.webp", "7744ec0b": "assets/pecas/7744ec0b.webp", "b8b042f7": "assets/pecas/b8b042f7.webp", "2fc58ecb": "assets/pecas/2fc58ecb.webp", "44555de7": "assets/pecas/44555de7.webp", "0217a41e": "assets/pecas/0217a41e.webp", "975bd6b9": "assets/pecas/975bd6b9.webp", "3821c834": "assets/pecas/3821c834.webp", "039ea9de": "assets/pecas/039ea9de.webp", "924b86e1": "assets/pecas/924b86e1.webp", "20e4b9a5": "assets/pecas/20e4b9a5.webp", "f52c5baa": "assets/pecas/f52c5baa.webp", "e13a87bb": "assets/pecas/e13a87bb.webp", "fd711cca": "assets/pecas/fd711cca.webp", "e89dd3f3": "assets/pecas/e89dd3f3.webp", "25c7c6d9": "assets/pecas/25c7c6d9.webp", "afe682a4": "assets/pecas/afe682a4.webp", "e03c8aa2": "assets/pecas/e03c8aa2.webp", "2c056d0b": "assets/pecas/2c056d0b.webp", "3ef1f2e9": "assets/pecas/3ef1f2e9.webp", "34ebc5b6": "assets/pecas/34ebc5b6.webp", "b35ffcbb": "assets/pecas/b35ffcbb.webp", "30b92538": "assets/pecas/30b92538.webp", "abb22b14": "assets/pecas/abb22b14.webp", "a9ba34df": "assets/pecas/a9ba34df.webp", "c96032e9": "assets/pecas/c96032e9.webp", "94e78c87": "assets/pecas/94e78c87.webp", "a08149c4": "assets/pecas/a08149c4.webp", "d76d141a": "assets/pecas/d76d141a.webp", "e773dfc8": "assets/pecas/e773dfc8.webp", "7df7e024": "assets/pecas/7df7e024.webp", "ad0efb09": "assets/pecas/ad0efb09.webp", "de21c545": "assets/pecas/de21c545.webp", "e01fd648": "assets/pecas/e01fd648.webp", "fe305127": "assets/pecas/fe305127.webp", "ff270036": "assets/pecas/ff270036.webp", "39d4551f": "assets/pecas/39d4551f.webp", "89564b75": "assets/pecas/89564b75.webp", "b6c4177a": "assets/pecas/b6c4177a.webp", "8f2d5c70": "assets/pecas/8f2d5c70.webp", "740dbb19": "assets/pecas/740dbb19.webp", "162bdbcc": "assets/pecas/162bdbcc.webp", "3d96d6b3": "assets/pecas/3d96d6b3.webp", "c1aba472": "assets/pecas/c1aba472.webp", "2976ef9a": "assets/pecas/2976ef9a.webp", "e654b015": "assets/pecas/e654b015.webp", "a20f5521": "assets/pecas/a20f5521.webp", "66a018c6": "assets/pecas/66a018c6.webp", "d0ba2c12": "assets/pecas/d0ba2c12.webp", "ed5e72fc": "assets/pecas/ed5e72fc.webp", "f99cc9cb": "assets/pecas/f99cc9cb.webp", "c00fbb36": "assets/pecas/c00fbb36.webp", "50c9d837": "assets/pecas/50c9d837.webp"};
+const PRODUTOS = [{"ref": "CID383", "nome": "Colar Seixos Turquesa", "cat": "colares", "preco": 42, "desc": "Contas de resina turquesa com entremeios de hematita dourada. Curto, com extensor.", "img": "a186d9ac", "variantes": [], "pags": [4], "bg": "#bebeb9"}, {"ref": "CID376", "nome": "Colar Hawlita Longo", "cat": "colares", "preco": 59, "desc": "Pedras naturais de hawlita turquesa em formato oval, intercaladas com hematita dourada.", "img": "d38db3bb", "variantes": [], "pags": [5], "bg": "#d9d6cb"}, {"ref": "CID377", "nome": "Colar Hawlita Curto", "cat": "colares", "preco": 55, "desc": "Ovais de hawlita turquesa com corrente de elos dourados e extensor.", "img": "ba73041b", "variantes": [], "pags": [5], "bg": "#d8d5cd"}, {"ref": "CID378", "nome": "Colar Pedras Brutas", "cat": "colares", "preco": 59, "desc": "Hawlita turquesa em pedras irregulares, cristais dourados e elos alongados.", "img": "52eace59", "variantes": [], "pags": [8], "bg": "#bcbcb4"}, {"ref": "CID381", "nome": "Colar Cascata de Gotas", "cat": "colares", "preco": 69, "desc": "Aro rígido dourado com babado de gotas de hawlita turquesa. Peça de impacto.", "img": "3d08ed80", "variantes": [], "pags": [9], "bg": "#bfbfba"}, {"ref": "CID382", "nome": "Colar Gotas Turquesa", "cat": "colares", "preco": 55, "desc": "Aro rígido dourado com uma fileira de gotas de hawlita turquesa.", "img": "c4d58a95", "variantes": [], "pags": [9], "bg": "#c6c8c6"}, {"ref": "CID380", "nome": "Colar Bolinhas Pendentes", "cat": "colares", "preco": 55, "desc": "Contas de hawlita turquesa com bolinhas pendentes e detalhes dourados.", "img": "e8db7d9e", "variantes": [], "pags": [11], "bg": "#c1c0b9"}, {"ref": "CID379", "nome": "Colar Contas Turquesa", "cat": "colares", "preco": 49, "desc": "Esferas de hawlita em verde turquesa com entremeios dourados.", "img": "af90729a", "variantes": [], "pags": [11], "bg": "#d1cec4"}, {"ref": "CID384", "nome": "Colar Cascalho", "cat": "colares", "preco": 55, "desc": "Lascas de pedra natural com centro de pepitas douradas. Corrente com extensor.", "img": "1f859504", "variantes": [{"label": "Quartzo verde"}, {"label": "Quartzo rosa"}, {"label": "Turquesa"}], "pags": [12], "bg": "#d4d3ca"}, {"ref": "CID372", "nome": "Colar Cinto Cravejado", "cat": "colares", "preco": 72, "desc": "1 metro de corrente com pingente cravejado. Usa como colar ou como cinto.", "img": "a7740934", "variantes": [], "pags": [14], "bg": "#c7c2b6"}, {"ref": "CID389", "nome": "Colar Medalhão de Resina", "cat": "colares", "preco": 59, "desc": "Contas de resina e medalhão orgânico com ponto de luz.", "img": "184422bd", "variantes": [{"label": "Caramelo"}, {"label": "Color"}], "pags": [16], "bg": "#c6c6c0"}, {"ref": "CID385", "nome": "Colar Mix de Pedras", "cat": "colares", "preco": 45, "desc": "Tubos dourados com jaspe verde, quartzo rosa, madrepérola e olho de gato.", "img": "c716f291", "variantes": [], "pags": [18], "bg": "#d2d1c8"}, {"ref": "CID386", "nome": "Colar Tons de Terra", "cat": "colares", "preco": 55, "desc": "Pedras e resinas em turquesa, marfim, oliva e caramelo com entremeios dourados.", "img": "2f2ee03c", "variantes": [], "pags": [19], "bg": "#cdcbc0"}, {"ref": "CID375", "nome": "Colar Gravata Madrepérola", "cat": "colares", "preco": 55, "desc": "Cordão marrom com pendente longo: turquesa, resina âmbar e placa de madrepérola.", "img": "e5d3718b", "variantes": [], "pags": [20], "bg": "#e0dccf"}, {"ref": "CID390", "nome": "Colar Lascas de Resina", "cat": "colares", "preco": 55, "desc": "Lascas de resina com pedras naturais, esferas cravejadas e conta central.", "img": "7744ec0b", "variantes": [{"label": "Tartaruga"}, {"label": "Turquesa"}], "pags": [21], "bg": "#cac8bd"}, {"ref": "CID388", "nome": "Colar Tubos de Resina", "cat": "colares", "preco": 55, "desc": "Tubos de resina com olho de tigre e quartzo rosa entre os detalhes dourados.", "img": "b8b042f7", "variantes": [{"label": "Turquesa"}, {"label": "Marfim"}], "pags": [23], "bg": "#c4c4bb"}, {"ref": "CID387", "nome": "Colar Cilindros Dourados", "cat": "colares", "preco": 59, "desc": "Cilindros dourados com entremeios de cristais coloridos.", "img": "2fc58ecb", "variantes": [], "pags": [24], "bg": "#c1bfb6"}, {"ref": "CID402", "nome": "Colar Cordão com Pedra", "cat": "colares", "preco": 49, "desc": "Cordão colorido com argolas douradas e pedra natural com ponto de luz.", "img": "44555de7", "variantes": [{"label": "Verde"}, {"label": "Laranja"}, {"label": "Pink"}, {"label": "Azul"}, {"label": "P&B"}], "pags": [27], "bg": "#c8c6ba"}, {"ref": "CID374", "nome": "Colar Cordão Folha", "cat": "colares", "preco": 45, "desc": "Cordão trançado longo com pedra natural, esfera cravejada, folha e medalha.", "img": "0217a41e", "variantes": [{"label": "Pink"}, {"label": "Laranja"}], "pags": [30], "bg": "#e0e0d6"}, {"ref": "CID395", "nome": "Colar Hematita Coração", "cat": "colares", "preco": 55, "desc": "Hematita dourada com coração martelado. Pingente removível.", "img": "975bd6b9", "variantes": [{"label": "Madrepérola", "img": "975bd6b9"}, {"label": "Turquesa", "img": "3821c834"}], "pags": [31], "bg": "#c0c0b4"}, {"ref": "CID373", "nome": "Colar Esferas Cravejadas", "cat": "colares", "preco": 47, "desc": "Cordão colorido com três esferas cravejadas e extensor.", "img": "039ea9de", "variantes": [{"label": "Azul turquesa"}, {"label": "Laranja"}, {"label": "Verde"}], "pags": [34], "bg": "#d1cec0"}, {"ref": "CID393", "nome": "Choker Berloques", "cat": "colares", "preco": 69, "desc": "Aro rígido com berloques: cerejas, esmaltados e pedras naturais.", "img": "924b86e1", "variantes": [{"label": "Rosa"}, {"label": "Verde"}], "pags": [35], "bg": "#d5d4ca"}, {"ref": "CID394", "nome": "Colar Relicário", "cat": "colares", "preco": 75, "desc": "Corrente com pingente relicário, pérola de água doce e cerejas esmaltadas.", "img": "20e4b9a5", "variantes": [], "pags": [35], "bg": "#d6d3c7"}, {"ref": "CID392", "nome": "Colar Medalha Esmaltada Curto", "cat": "colares", "preco": 49, "desc": "Corrente fina com medalha esmaltada octogonal. Vendido separado do longo.", "img": "f52c5baa", "variantes": [{"label": "Branco", "img": "f52c5baa"}, {"label": "Pink", "img": "e13a87bb"}], "pags": [36], "bg": "#cbd2c7"}, {"ref": "CID391", "nome": "Colar Pérolas e Medalha Longo", "cat": "colares", "preco": 59, "desc": "Pérolas de água doce e medalha esmaltada com coração. Vendido separado do curto.", "img": "f52c5baa", "variantes": [{"label": "Azul", "img": "f52c5baa"}, {"label": "Off-white", "img": "e13a87bb"}], "pags": [36], "bg": "#cbd2c7"}, {"ref": "CID400", "nome": "Corrente Elos Curta", "cat": "base", "preco": 50, "desc": "Elos alongados com fecho argola, pronta para pendurar pingentes.", "img": "fd711cca", "variantes": [], "pags": [38], "bg": "#dfdcd0"}, {"ref": "CID401", "nome": "Corrente Elos Longa", "cat": "base", "preco": 50, "desc": "Versão longa da corrente de elos com fecho argola.", "img": "e89dd3f3", "variantes": [], "pags": [38], "bg": "#e4dfca"}, {"ref": "CID399", "nome": "Corrente Malha Fina", "cat": "base", "preco": 50, "desc": "Corrente de malha fina com fecho argola para pingentes.", "img": "25c7c6d9", "variantes": [], "pags": [38], "bg": "#e0d5bb"}, {"ref": "CID397", "nome": "Colar Pérolas de Água Doce", "cat": "base", "preco": 50, "desc": "Pérolas naturais de água doce com corrente e extensor.", "img": "afe682a4", "variantes": [], "pags": [39], "bg": "#d0d2ce"}, {"ref": "CID396", "nome": "Colar Veneziana Cravejada", "cat": "base", "preco": 59, "desc": "Corrente veneziana com esfera cravejada central.", "img": "e03c8aa2", "variantes": [], "pags": [39], "bg": "#cccdca"}, {"ref": "CID398", "nome": "Colar Hematita Dourada", "cat": "base", "preco": 50, "desc": "Contas de hematita dourada com extensor.", "img": "2c056d0b", "variantes": [], "pags": [39], "bg": "#e6e4d7"}, {"ref": "PIG 1.1", "nome": "Pingente Coração Jaspe Dálmata", "cat": "pingentes", "preco": 15, "desc": "Pingente avulso para combinar com as correntes e colares base.", "img": "3ef1f2e9", "variantes": [], "pags": [40], "bg": "#c5bdaf"}, {"ref": "PIG 1.2", "nome": "Pingente Coração Jaspe Laranja", "cat": "pingentes", "preco": 15, "desc": "Pingente avulso para combinar com as correntes e colares base.", "img": "34ebc5b6", "variantes": [], "pags": [40], "bg": "#c5bdae"}, {"ref": "PIG 1.3", "nome": "Pingente Coração Jaspe Verde", "cat": "pingentes", "preco": 15, "desc": "Pingente avulso para combinar com as correntes e colares base.", "img": "b35ffcbb", "variantes": [], "pags": [40], "bg": "#c4beb2"}, {"ref": "PIG 2", "nome": "Pingente Duo Turquesa e Madrepérola", "cat": "pingentes", "preco": 15, "desc": "Pingente avulso para combinar com as correntes e colares base.", "img": "30b92538", "variantes": [], "pags": [40], "bg": "#c3bdaf"}, {"ref": "PIG 3", "nome": "Pingente Madrepérola Cravejada", "cat": "pingentes", "preco": 15, "desc": "Pingente avulso para combinar com as correntes e colares base.", "img": "abb22b14", "variantes": [], "pags": [40], "bg": "#c1bcac"}, {"ref": "PIG 4", "nome": "Pingente Turquesa Bruta", "cat": "pingentes", "preco": 15, "desc": "Pingente avulso para combinar com as correntes e colares base.", "img": "a9ba34df", "variantes": [], "pags": [40], "bg": "#c4c0b0"}, {"ref": "PIG 5", "nome": "Pingente Turquesa Oval", "cat": "pingentes", "preco": 15, "desc": "Pingente avulso para combinar com as correntes e colares base.", "img": "c96032e9", "variantes": [], "pags": [40], "bg": "#c4bfb2"}, {"ref": "PIG 6", "nome": "Pingente Disco Madrepérola", "cat": "pingentes", "preco": 15, "desc": "Pingente avulso para combinar com as correntes e colares base.", "img": "94e78c87", "variantes": [], "pags": [40], "bg": "#c8c3b1"}, {"ref": "PIG 7", "nome": "Pingente Esmaltado Tulipa", "cat": "pingentes", "preco": 15, "desc": "Pingente avulso para combinar com as correntes e colares base.", "img": "a08149c4", "variantes": [], "pags": [40], "bg": "#beb8ab"}, {"ref": "PIG 8", "nome": "Pingente Ovo Esmaltado", "cat": "pingentes", "preco": 15, "desc": "Pingente avulso para combinar com as correntes e colares base.", "img": "d76d141a", "variantes": [], "pags": [40], "bg": "#c0bbaf"}, {"ref": "BID216", "nome": "Brinco Berloques Turquesa", "cat": "brincos", "preco": 49, "desc": "Argola orgânica com berloques: medalha martelada, turquesa e ponto de luz.", "img": "e773dfc8", "variantes": [], "pags": [6], "bg": "#cbc3b1"}, {"ref": "BID207", "nome": "Brinco Botão Turquesa", "cat": "brincos", "preco": 28, "desc": "Botão martelado com hawlita turquesa ao centro.", "img": "7df7e024", "variantes": [], "pags": [8, 10], "bg": "#cec7ae"}, {"ref": "BID218", "nome": "Brinco Folha e Gota", "cat": "brincos", "preco": 35, "desc": "Folha dourada ondulada com gota de hawlita turquesa.", "img": "ad0efb09", "variantes": [], "pags": [10], "bg": "#b5b4ac"}, {"ref": "BID219", "nome": "Brinco Pedra Bruta", "cat": "brincos", "preco": 30, "desc": "Disco martelado com pedra bruta de hawlita turquesa.", "img": "de21c545", "variantes": [], "pags": [10], "bg": "#c8c5b6"}, {"ref": "BID229", "nome": "Brinco Argola Orgânica", "cat": "brincos", "preco": 28, "desc": "Argola curta de formato orgânico, dourado polido.", "img": "e01fd648", "variantes": [], "pags": [15], "bg": "#cac5b5"}, {"ref": "BID228", "nome": "Brinco Leque Solar", "cat": "brincos", "preco": 30, "desc": "Meio sol de raios dourados, texturizado.", "img": "fe305127", "variantes": [], "pags": [15], "bg": "#d0c7ae"}, {"ref": "BID221", "nome": "Brinco Mandala", "cat": "brincos", "preco": 40, "desc": "Flor vazada dourada com pedra verde-limão ao centro.", "img": "ff270036", "variantes": [], "pags": [15], "bg": "#c2c5bd"}, {"ref": "BID217", "nome": "Brinco Totem", "cat": "brincos", "preco": 38, "desc": "Flor dourada, olho de tigre, resina e turquesa oval em composição longa.", "img": "39d4551f", "variantes": [], "pags": [17], "bg": "#cdcdc4"}, {"ref": "BID215", "nome": "Brinco Berloques Terra", "cat": "brincos", "preco": 35, "desc": "Argola com berloques de pedra marfim, turquesa e vermelha.", "img": "89564b75", "variantes": [], "pags": [19], "bg": "#c8cac2"}, {"ref": "BID225", "nome": "Brinco Coral Marfim", "cat": "brincos", "preco": 28, "desc": "Argola orgânica com esfera de hawlita marfim.", "img": "b6c4177a", "variantes": [], "pags": [22], "bg": "#d8ceb4"}, {"ref": "BID224", "nome": "Brinco Sino Cristal", "cat": "brincos", "preco": 30, "desc": "Gota polida com sino dourado e cristal na ponta.", "img": "8f2d5c70", "variantes": [], "pags": [22], "bg": "#d1c7af"}, {"ref": "BID222", "nome": "Brinco Gota Cristal", "cat": "brincos", "preco": 28, "desc": "Gota dourada com cristal fumê.", "img": "740dbb19", "variantes": [], "pags": [19, 22], "bg": "#ccc5b3"}, {"ref": "BID214", "nome": "Brinco Franja Colorida", "cat": "brincos", "preco": 40, "desc": "Escudo martelado com cristal e franja de pedras coloridas.", "img": "162bdbcc", "variantes": [], "pags": [25], "bg": "#bebfb7"}, {"ref": "BID220", "nome": "Brinco Coração Martelado", "cat": "brincos", "preco": 30, "desc": "Coração martelado com pedra natural. Vendido separado do colar.", "img": "3d96d6b3", "variantes": [{"label": "Madrepérola", "img": "3d96d6b3"}, {"label": "Turquesa", "img": "c1aba472"}], "pags": [31], "bg": "#c4c0b8"}, {"ref": "BID226", "nome": "Brinco Botão Pérola", "cat": "brincos", "preco": 28, "desc": "Disco martelado com pérola ao centro.", "img": "2976ef9a", "variantes": [], "pags": [32], "bg": "#cec3aa"}, {"ref": "BID223", "nome": "Brinco Argola Esfera Cravejada", "cat": "brincos", "preco": 32, "desc": "Argola curta com esfera cravejada pendente.", "img": "e654b015", "variantes": [], "pags": [32, 34], "bg": "#d3cdb8"}, {"ref": "BID227", "nome": "Brinco Seixo Dourado", "cat": "brincos", "preco": 30, "desc": "Oval polido dourado com ponto de luz.", "img": "a20f5521", "variantes": [], "pags": [32], "bg": "#c4c6b8"}, {"ref": "PID180", "nome": "Pulseira Hawlita Oval", "cat": "pulseiras", "preco": 40, "desc": "Ovais de hawlita turquesa com fecho magnético.", "img": "66a018c6", "variantes": [], "pags": [6], "bg": "#d0ccbe"}, {"ref": "PID184", "nome": "Pulseira Elos Duplos", "cat": "pulseiras", "preco": 55, "desc": "Duas voltas de elos dourados com medalha e pérola.", "img": "d0ba2c12", "variantes": [], "pags": [6, 17], "bg": "#dbd3bf"}, {"ref": "PID181", "nome": "Pulseira Pedras Brutas", "cat": "pulseiras", "preco": 45, "desc": "Hawlita turquesa em pedras irregulares com cristais e fecho magnético.", "img": "ed5e72fc", "variantes": [], "pags": [8], "bg": "#b6b4ab"}, {"ref": "PID182", "nome": "Pulseira Aro e Contas", "cat": "pulseiras", "preco": 45, "desc": "Meio aro dourado com contas de pedras naturais e medalha.", "img": "f99cc9cb", "variantes": [], "pags": [17, 19], "bg": "#d8d0c0"}, {"ref": "PID185", "nome": "Pulseira Berloques", "cat": "pulseiras", "preco": 59, "desc": "Corrente com berloques de madrepérola, ágata pink, jaspe dálmata e turquesa.", "img": "c00fbb36", "variantes": [], "pags": [25], "bg": "#c2bdb4"}, {"ref": "PID183", "nome": "Pulseira Elos e Esferas", "cat": "pulseiras", "preco": 50, "desc": "Elos alongados com três esferas cravejadas e fecho magnético.", "img": "50c9d837", "variantes": [], "pags": [25, 34], "bg": "#cbc1af"}];
+
+const CATS = [
+  {id:"colares", nome:"Colares"},
+  {id:"brincos", nome:"Brincos"},
+  {id:"pulseiras", nome:"Pulseiras"},
+  {id:"compor", nome:"Colar + Pingente", intro:"Escolha uma corrente ou colar base e pendure quantos pingentes quiser. Pingentes avulsos a R$ 15,00 cada."}
+];
+const brl = v => v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const norm = s => s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+const byRef = Object.fromEntries(PRODUTOS.map(p=>[p.ref,p]));
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+let cart = [];               // [{ref, v (índice da opção ou -1), q}]
+const escolha = {};          // ref -> índice da opção escolhida no card
+try { cart = JSON.parse(localStorage.getItem("cd-sacola")||"[]").filter(i=>byRef[i.ref]); } catch(e){ cart = []; }
+function save(){ try{ localStorage.setItem("cd-sacola", JSON.stringify(cart)); }catch(e){} }
+
+const CAMPOS = {nome:"fNome", cidade:"fCidade", loja:"fLoja", email:"fEmail", doc:"fDoc"};
+const OBRIG = ["nome","cidade"];
+function dados(){ const o={}; for(const k in CAMPOS) o[k]=$(CAMPOS[k]).value.trim(); return o; }
+function faltando(){ const f = dados(); return OBRIG.filter(k=>!f[k]); }
+function salvarDados(){ try{ localStorage.setItem("cd-dados", JSON.stringify(dados())); }catch(e){} }
+function carregarDados(){ try{ const o = JSON.parse(localStorage.getItem("cd-dados")||"{}"); for(const k in CAMPOS) if(o[k]) $(CAMPOS[k]).value = o[k]; }catch(e){} }
+const optLabel = (p,v) => v>=0 && p.variantes[v] ? p.variantes[v].label : "";
+const imgOf = (p,v) => IMGS[(v>=0 && p.variantes[v] && p.variantes[v].img) || p.img];
+const find = (ref,v) => cart.find(i=>i.ref===ref && i.v===v);
+const pecas = () => cart.reduce((s,i)=>s+i.q,0);
+const total = () => cart.reduce((s,i)=>s+i.q*byRef[i.ref].preco,0);
+
+/* ---------- Vitrine ---------- */
+function cardHTML(p){
+  const v = p.variantes.length ? 0 : -1;
+  escolha[p.ref] = v;
+  const opts = p.variantes.length ? `<fieldset class="opts" role="radiogroup" aria-label="Opção de ${esc(p.nome)}"><legend>Opção</legend>${
+    p.variantes.map((o,i)=>`<button type="button" class="opt" role="radio" aria-checked="${i===0}" data-ref="${esc(p.ref)}" data-v="${i}">${esc(o.label)}</button>`).join("")}</fieldset>` : "";
+  return `<article class="card" data-ref="${esc(p.ref)}" data-cat="${p.cat}">
+    <figure style="background:${p.bg}"><img src="${imgOf(p,v)}" data-img="${esc(p.ref)}" alt="${esc(p.nome)}" loading="lazy"></figure>
+    <div class="meta">
+      <span class="ref">${esc(p.ref)}</span>
+      <h3 class="name">${esc(p.nome)}</h3>
+      <p class="desc">${esc(p.desc)}</p>
+    </div>
+    ${opts}
+    <div class="buy"><span class="price num">${brl(p.preco)}</span><span class="ctl" data-ctl="${esc(p.ref)}"></span></div>
+  </article>`;
+}
+function ctlHTML(ref){
+  const v = escolha[ref], it = find(ref,v);
+  if(!it) return `<button type="button" class="add" data-add="${esc(ref)}">Adicionar</button>`;
+  return `<span class="stepper" role="group" aria-label="Quantidade na sacola"><button type="button" data-dec="${esc(ref)}" aria-label="Tirar uma">−</button><output class="num">${it.q}</output><button type="button" data-inc="${esc(ref)}" aria-label="Pôr mais uma">+</button></span>`;
+}
+function renderVitrine(){
+  const groups = {colares:[],brincos:[],pulseiras:[],compor:[]};
+  PRODUTOS.forEach(p=>{ (p.cat==="base"||p.cat==="pingentes" ? groups.compor : groups[p.cat]).push(p); });
+  $("main").innerHTML = CATS.map(c=>{
+    const list = groups[c.id];
+    let body;
+    if(c.id==="compor"){
+      const b = list.filter(p=>p.cat==="base"), g = list.filter(p=>p.cat==="pingentes");
+      body = `<h3 class="sub">Correntes e colares base</h3><div class="grid">${b.map(cardHTML).join("")}</div>
+              <h3 class="sub">Pingentes</h3><div class="grid">${g.map(cardHTML).join("")}</div>`;
+    } else body = `<div class="grid">${list.map(cardHTML).join("")}</div>`;
+    return `<section class="section" id="sec-${c.id}" data-sec="${c.id}">
+      <div class="sec-head"><h2>${c.nome}</h2>${c.intro?`<p>${c.intro}</p>`:`<p class="num">${list.length} modelos</p>`}</div>${body}</section>`;
+  }).join("");
+  $("chips").innerHTML = `<button type="button" class="chip" aria-pressed="true" data-cat="todas">Todas<span class="num">${PRODUTOS.length}</span></button>` +
+    CATS.map(c=>`<button type="button" class="chip" aria-pressed="false" data-cat="${c.id}">${c.nome}<span class="num">${groups[c.id].length}</span></button>`).join("");
+  document.querySelectorAll("[data-ctl]").forEach(el=>el.innerHTML = ctlHTML(el.dataset.ctl));
+}
+function refreshCtl(ref){ document.querySelectorAll(`[data-ctl="${CSS.escape(ref)}"]`).forEach(el=>el.innerHTML = ctlHTML(ref)); }
+
+/* ---------- Catálogo paginado ---------- */
+const NPAG = 42, pad = n => String(n).padStart(2,"0");
+const PAGS = {}; PRODUTOS.forEach(p=>p.pags.forEach(n=>(PAGS[n]=PAGS[n]||[]).push(p.ref)));
+let pag = 1, thumbsProntos = false;
+function vItemHTML(ref){
+  const p = byRef[ref], v = escolha[ref];
+  const opts = p.variantes.length ? `<fieldset class="opts" role="radiogroup" aria-label="Opção de ${esc(p.nome)}"><legend>Opção</legend>${
+    p.variantes.map((o,i)=>`<button type="button" class="opt" role="radio" aria-checked="${i===v}" data-ref="${esc(p.ref)}" data-v="${i}">${esc(o.label)}</button>`).join("")}</fieldset>` : "";
+  return `<li class="v-item"><img src="${imgOf(p,v)}" data-img="${esc(p.ref)}" alt="" style="background:${p.bg}">
+    <div class="meta"><span class="ref">${esc(p.ref)}</span><div class="name">${esc(p.nome)}</div>${opts}
+    <div class="buy"><span class="price num">${brl(p.preco)}</span><span class="ctl" data-ctl="${esc(p.ref)}">${ctlHTML(ref)}</span></div></div></li>`;
+}
+function irPara(n){
+  pag = Math.min(NPAG, Math.max(1, n));
+  const img = $("vImg"); img.src = `catalogo/p${pad(pag)}.webp`; img.alt = `Página ${pag} do catálogo Oásis Urbano`;
+  $("vCount").textContent = `Página ${pag} de ${NPAG}`;
+  $("vPrev").disabled = pag===1; $("vNext").disabled = pag===NPAG;
+  const refs = PAGS[pag] || [];
+  $("vSideTitle").textContent = refs.length ? (refs.length===1 ? "Peça desta página" : `${refs.length} peças nesta página`) : "Página de inspiração";
+  $("vHint").textContent = refs.length ? "Escolha a opção e adicione direto à sacola." : "Esta página apresenta a coleção. Avance para ver as peças.";
+  $("vList").innerHTML = refs.map(vItemHTML).join("");
+  document.querySelectorAll("#vThumbs button").forEach(b=>{ const on = +b.dataset.pag===pag; b.setAttribute("aria-current", on); if(on) b.scrollIntoView({block:"nearest", inline:"center"}); });
+  [pag-1,pag+1].forEach(k=>{ if(k>=1 && k<=NPAG){ const pre = new Image(); pre.src = `catalogo/p${pad(k)}.webp`; } });
+  $("vSide").scrollTop = 0;
+}
+function abrirCat(n){
+  if(!thumbsProntos){
+    $("vThumbs").innerHTML = Array.from({length:NPAG},(_,i)=>`<button type="button" data-pag="${i+1}" class="${PAGS[i+1]?"tem":""}" aria-label="Página ${i+1}${PAGS[i+1]?", com peças":""}"><img src="catalogo/t${pad(i+1)}.webp" alt="" loading="lazy"></button>`).join("");
+    thumbsProntos = true;
+  }
+  $("viewer").hidden = false; document.body.style.overflow = "hidden";
+  irPara(n || pag); $("vClose").focus();
+}
+function fecharCat(){ $("viewer").hidden = true; if($("panel").hidden) document.body.style.overflow = ""; }
+
+let catAtual = "todas";
+function aplicarFiltro(){
+  const q = norm($("q").value.trim());
+  let vis = 0;
+  document.querySelectorAll(".section").forEach(sec=>{
+    const okCat = catAtual==="todas" || sec.dataset.sec===catAtual;
+    let n = 0;
+    sec.querySelectorAll(".card").forEach(card=>{
+      const p = byRef[card.dataset.ref];
+      const hay = norm([p.ref,p.nome,p.desc,...p.variantes.map(o=>o.label)].join(" "));
+      const show = okCat && (!q || q.split(/\s+/).every(t=>hay.includes(t)));
+      card.hidden = !show; if(show) n++;
+    });
+    sec.querySelectorAll(".sub").forEach(h=>{ const g = h.nextElementSibling; h.hidden = g && ![...g.children].some(c=>!c.hidden); });
+    sec.hidden = n===0; vis += n;
+  });
+  $("none").hidden = vis>0;
+}
+
+/* ---------- Sacola ---------- */
+function add(ref, v, d){
+  const p = byRef[ref]; let it = find(ref,v);
+  if(!it){ if(d<0) return; it = {ref, v, q:0}; cart.push(it); }
+  it.q += d;
+  if(it.q<=0) cart = cart.filter(x=>x!==it);
+  save(); refreshCtl(ref); renderBag();
+  if(d>0 && $("panel").hidden){ const ol = optLabel(p,v); toast(`${p.nome}${ol?" · "+ol:""} na sacola`); }
+}
+function mensagem(){
+  const linhas = cart.map((i,n)=>{
+    const p = byRef[i.ref], ol = optLabel(p,i.v);
+    return `${n+1}. ${p.nome}${ol?" · "+ol:""}\n   ${p.ref} · ${i.q} un × ${brl(p.preco)} = ${brl(i.q*p.preco)}`;
+  });
+  const f = dados();
+  const ficha = [["Nome",f.nome],["Cidade",f.cidade],["Loja",f.loja],["E-mail",f.email],["CPF/CNPJ",f.doc]].filter(x=>x[1]).map(x=>`${x[0]}: ${x[1]}`);
+  return `Olá, Camila! Quero fazer um pedido pela vitrine Oásis Urbano (atacado).\n\n*Meus dados*\n${ficha.length?ficha.join("\n"):"(preencher)"}\n\n*Pedido*\n${linhas.join("\n")}\n\n*Total: ${pecas()} peças · ${brl(total())}*`;
+}
+function renderBag(){
+  const pcs = pecas(), val = total(), falta = Math.max(0, MIN_PECAS - pcs);
+  $("bagCount").textContent = pcs; $("vBagCount").textContent = pcs;
+  $("dock").hidden = pcs===0;
+  $("dockSum").textContent = `${pcs} ${pcs===1?"peça":"peças"} · ${brl(val)}`;
+  $("dockMeter").style.width = Math.min(100, pcs/MIN_PECAS*100) + "%";
+  $("dockNote").textContent = falta ? `Faltam ${falta} para o pedido mínimo de ${MIN_PECAS}` : "Pedido mínimo atingido";
+  $("items").innerHTML = cart.length ? cart.map((i,n)=>{
+    const p = byRef[i.ref], ol = optLabel(p,i.v);
+    return `<li class="item"><img src="${imgOf(p,i.v)}" alt="" style="background:${p.bg}">
+      <div><div class="name">${esc(p.nome)}</div><small>${ol?esc(ol)+" · ":""}${esc(p.ref)}</small><small class="num">${brl(p.preco)} cada</small></div>
+      <div class="item-r"><span class="stepper" role="group" aria-label="Quantidade"><button type="button" data-bdec="${n}" aria-label="Tirar uma">−</button><output class="num">${i.q}</output><button type="button" data-binc="${n}" aria-label="Pôr mais uma">+</button></span>
+      <strong class="num">${brl(i.q*p.preco)}</strong><button type="button" class="rm" data-brm="${n}">Remover</button></div></li>`;
+  }).join("") : `<li class="bag-empty">Sua sacola está vazia. Toque em Adicionar nas peças que você quer.</li>`;
+  $("bagRest").hidden = !cart.length; $("panelFoot").hidden = !cart.length;
+  $("tPcs").textContent = pcs; $("tVal").textContent = brl(val);
+  const ml = $("minline");
+  ml.textContent = falta ? `Faltam ${falta} ${falta===1?"peça":"peças"} para o pedido mínimo do atacado (${MIN_PECAS} peças, pode misturar modelos).` : "Pedido mínimo atingido. É só enviar.";
+  ml.classList.toggle("ok", !falta);
+  const txt = mensagem(); $("msg").textContent = txt;
+  const go = $("go");
+  if(falta){ go.setAttribute("aria-disabled","true"); go.removeAttribute("href"); $("goTxt").textContent = `Faltam ${falta} ${falta===1?"peça":"peças"} para finalizar`; }
+  else if(faltando().length){ go.removeAttribute("aria-disabled"); go.removeAttribute("href"); go.dataset.check = "1"; $("goTxt").textContent = "Finalizar no WhatsApp"; }
+  else { go.removeAttribute("aria-disabled"); delete go.dataset.check; go.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(txt)}`; $("goTxt").textContent = "Finalizar no WhatsApp"; }
+}
+
+let lastFocus = null;
+function abrir(){ lastFocus = document.activeElement; $("panel").hidden = false; $("scrim").hidden = false; document.body.style.overflow="hidden"; $("close").focus(); }
+function fechar(){ $("panel").hidden = true; $("scrim").hidden = true; document.body.style.overflow = $("viewer").hidden ? "" : "hidden"; resetClear(); if(lastFocus) lastFocus.focus(); }
+let tt; function toast(t){ const el=$("toast"); el.textContent=t; el.hidden=false; clearTimeout(tt); tt=setTimeout(()=>el.hidden=true,1800); }
+function resetClear(){ $("clearWrap").innerHTML = `<button class="textbtn" id="clear" type="button">Esvaziar sacola</button>`; }
+
+/* ---------- Eventos ---------- */
+document.addEventListener("click", e=>{
+  const t = e.target.closest("button,a"); if(!t) return;
+  const d = t.dataset;
+  if(t.id==="go" && d.check){
+    e.preventDefault();
+    const miss = faltando();
+    OBRIG.forEach(k=>{ const el=$(CAMPOS[k]), bad = miss.includes(k); el.setAttribute("aria-invalid", bad); $("e"+CAMPOS[k].slice(1)).textContent = bad ? "Preencha para enviar o pedido" : ""; });
+    if(miss.length){ const el = $(CAMPOS[miss[0]]); el.scrollIntoView({block:"center", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"}); el.focus({preventScroll:true}); }
+    return;
+  }
+  if(d.add){ const ctl = t.closest("[data-ctl]"); add(d.add, escolha[d.add], 1); const s = ctl && ctl.querySelector("[data-inc]"); if(s) s.focus(); }
+  else if(d.inc) add(d.inc, escolha[d.inc], 1);
+  else if(d.dec) add(d.dec, escolha[d.dec], -1);
+  else if(t.classList.contains("opt")){
+    const ref = d.ref, v = +d.v, p = byRef[ref];
+    escolha[ref] = v;
+    document.querySelectorAll(`.opt[data-ref="${CSS.escape(ref)}"]`).forEach(b=>b.setAttribute("aria-checked", +b.dataset.v===v));
+    document.querySelectorAll(`img[data-img="${CSS.escape(ref)}"]`).forEach(im=>im.src = imgOf(p,v));
+    refreshCtl(ref);
+  }
+  else if(t.classList.contains("chip")){
+    catAtual = d.cat;
+    document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed", c===t));
+    aplicarFiltro();
+    const alvo = catAtual==="todas" ? $("main") : $("sec-"+catAtual);
+    const y = alvo.getBoundingClientRect().top + scrollY - $("nav-h").offsetHeight - 8;
+    scrollTo({top: Math.max(0,y), behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
+  }
+  else if(d.binc!==undefined){ const i = cart[+d.binc]; add(i.ref, i.v, 1); }
+  else if(d.bdec!==undefined){ const i = cart[+d.bdec]; add(i.ref, i.v, -1); }
+  else if(d.brm!==undefined){ const i = cart[+d.brm]; add(i.ref, i.v, -i.q); }
+  else if(d.openCat) abrirCat(pag);
+  else if(t.id==="vClose") fecharCat();
+  else if(t.id==="vPrev") irPara(pag-1);
+  else if(t.id==="vNext") irPara(pag+1);
+  else if(d.pag) irPara(+d.pag);
+  else if(t.id==="bagTop" || t.id==="dockBtn" || t.id==="vBag") abrir();
+  else if(t.id==="close") fechar();
+  else if(t.id==="copy"){
+    const txt = mensagem();
+    const ok = ()=>{ t.textContent="Lista copiada"; setTimeout(()=>t.textContent="Copiar lista",1800); };
+    const fallback = ()=>{ const d = $("panel").querySelector("details"); d.open = true; const r = document.createRange(); r.selectNodeContents($("msg")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); t.textContent="Selecionei a lista, copie com Ctrl+C"; };
+    try { navigator.clipboard.writeText(txt).then(ok, fallback); } catch(err){ fallback(); }
+  }
+  else if(t.id==="clear"){
+    $("clearWrap").innerHTML = `<span class="confirm">Esvaziar tudo? <button class="ghost" id="clearYes" type="button">Sim</button><button class="textbtn" id="clearNo" type="button">Não</button></span>`;
+    $("clearNo").focus();
+  }
+  else if(t.id==="clearYes"){ const refs = cart.map(i=>i.ref); cart = []; save(); refs.forEach(refreshCtl); renderBag(); resetClear(); }
+  else if(t.id==="clearNo") resetClear();
+});
+$("scrim").addEventListener("click", fechar);
+document.addEventListener("keydown", e=>{
+  if(e.key==="Escape"){ if(!$("panel").hidden) fechar(); else if(!$("viewer").hidden) fecharCat(); return; }
+  if(!$("viewer").hidden && $("panel").hidden && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)){
+    if(e.key==="ArrowRight"){ e.preventDefault(); irPara(pag+1); }
+    if(e.key==="ArrowLeft"){ e.preventDefault(); irPara(pag-1); }
+  }
+});
+let tx=0, ty=0;
+$("vStage").addEventListener("touchstart", e=>{ tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, {passive:true});
+$("vStage").addEventListener("touchend", e=>{ const dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty; if(Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)*1.3) irPara(pag + (dx<0 ? 1 : -1)); }, {passive:true});
+$("q").addEventListener("input", aplicarFiltro);
+Object.values(CAMPOS).forEach(id=>$(id).addEventListener("input", ()=>{
+  const el = $(id); if(el.getAttribute("aria-invalid")==="true" && el.value.trim()){ el.setAttribute("aria-invalid","false"); const e = $("e"+id.slice(1)); if(e) e.textContent=""; }
+  salvarDados(); renderBag();
+}));
+carregarDados();
+document.querySelector(".bar").id = "nav-h";
+
+renderVitrine(); renderBag(); aplicarFiltro();
+if(location.hash === "#catalogo") abrirCat(1);
+</script>
+
+</body>
+</html>
