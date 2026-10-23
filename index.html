@@ -231,6 +231,9 @@ body:has(#dock:not([hidden])) .rodape{padding-bottom:calc(96px + env(safe-area-i
 .rod-dl div{display:grid;grid-template-columns:112px minmax(0,1fr);gap:12px;font-size:14px;line-height:1.45}
 .rod-dl dt{font-weight:600}
 .rod-dl dd{margin:0;color:var(--muted)}
+.rod-priv{display:grid;gap:8px;border-top:1px solid var(--line);padding-block:20px 22px}
+.rod-priv h2{margin:0;font-family:var(--f-ui);font-weight:500;font-size:10.5px;color:var(--muted)}
+.rod-priv p{margin:0;font-size:13px;line-height:1.55;color:var(--muted);max-width:78ch;text-wrap:pretty}
 .rod-legal{display:flex;flex-wrap:wrap;justify-content:flex-start;gap:6px 32px;border-top:1px solid var(--line);padding-block:14px 18px;font-size:12.5px;color:var(--muted)}
 @media (min-width:640px){.rod-in{grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);column-gap:40px}.rod-marca{grid-column:1 / -1}}
 @media (min-width:980px){.rod-in{grid-template-columns:auto auto minmax(0,400px);justify-content:start;column-gap:64px}.rod-marca{grid-column:auto}}
@@ -365,6 +368,10 @@ body:has(#dock:not([hidden])) .rodape{padding-bottom:calc(96px + env(safe-area-i
         <div><dt>Outras cidades</dt><dd>PAC, SEDEX ou LATAM. O frete é orçado no fechamento do pedido pelo WhatsApp.</dd></div>
       </dl>
     </div>
+  </div>
+  <div class="wrap rod-priv" id="privacidade">
+    <h2 class="caps">Privacidade</h2>
+    <p>Os dados que você informa ao fechar o pedido (nome, cidade e, se quiser, os outros campos) servem só para atender e registrar o seu pedido. Eles vão na mensagem do WhatsApp e ficam guardados numa planilha de pedidos acessada apenas pela Camila Damiani e pela equipe que cuida da vitrine. Não vendemos nem repassamos esses dados. Para agilizar o próximo pedido, eles também ficam salvos neste aparelho. Para corrigir ou apagar seus dados, é só pedir pelo WhatsApp.</p>
   </div>
   <div class="wrap rod-legal">
     <span>© 2026 Camila Damiani. Todos os direitos reservados.</span>
