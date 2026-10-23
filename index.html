@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Compre a coleção Oásis Urbano, de Camila Damiani. Monte sua sacola e finalize o pedido pelo WhatsApp.">
-<meta property="og:title" content="Oásis Urbano · Camila Damiani">
+<meta property="og:title" content="Oásis Urbano · Camila Damiani · Varejo">
 <meta property="og:description" content="Compre a coleção Oásis Urbano, de Camila Damiani. Monte sua sacola e finalize o pedido pelo WhatsApp.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="assets/capa.webp">
@@ -35,18 +35,21 @@
   --f-script:"Allura","Brush Script MT",cursive;
   --f-display:"Marcellus","Optima","Palatino Linotype",serif;
   --f-ui:"Jost","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --faixa-bg:#12767e; --faixa-ink:#ffffff; --faixa-forte:#ffffff;   /* faixa do canal (varejo) */
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#1b1411; --bed:#2a201b; --surface:#231a16; --ink:#f1e6da; --muted:#c8ad9e;
     --line:rgba(241,230,218,.16); --accent:#4cbcc2; --accent-ink:#0d1f20; --accent-tint:#173a3c;
     --gold:#d6ad62; --warn:#f0b07a; --shadow:0 18px 50px rgba(0,0,0,.5); color-scheme:dark;
+    --faixa-bg:#173a3c; --faixa-ink:#f1e6da; --faixa-forte:#7fd6da;
   }
 }
 :root[data-theme="dark"]{
   --bg:#1b1411; --bed:#2a201b; --surface:#231a16; --ink:#f1e6da; --muted:#c8ad9e;
   --line:rgba(241,230,218,.16); --accent:#4cbcc2; --accent-ink:#0d1f20; --accent-tint:#173a3c;
   --gold:#d6ad62; --warn:#f0b07a; --shadow:0 18px 50px rgba(0,0,0,.5); color-scheme:dark;
+  --faixa-bg:#173a3c; --faixa-ink:#f1e6da; --faixa-forte:#7fd6da;
 }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
@@ -280,13 +283,27 @@ body:has(#dock:not([hidden])) .rodape{padding-bottom:calc(96px + env(safe-area-i
 @media (max-width:520px){.v-title .sc{font-size:28px}.viewer .bag-btn .lbl{display:none}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 @media (max-width:420px){.fields{grid-template-columns:1fr}}
+/* Canal: faixa no topo, selo e linha da barra mostram se é atacado ou varejo */
+.faixa{background:var(--faixa-bg);color:var(--faixa-ink)}
+.faixa-in{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:2px 12px;padding-block:9px;text-align:center}
+.faixa b{font-weight:600;color:var(--faixa-forte)}
+.faixa span{font-size:13px;letter-spacing:.02em;text-transform:none;opacity:.92}
+.selo{justify-self:start;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--accent);color:var(--accent);border-radius:999px;padding:5px 13px 5px 11px;font-weight:600;line-height:1.2}
+.selo::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
+.bar{border-top:3px solid var(--accent)}
+.hero .selo{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.panel-tit{display:flex;align-items:center;gap:12px;flex-wrap:wrap;min-width:0}
+.panel-tit .selo{font-size:10.5px;padding:3px 10px 3px 9px}
+
 </style>
+
+<div class="faixa caps" role="note"><div class="wrap faixa-in"><b>Varejo</b><span>Compre direto da coleção, sem pedido mínimo</span></div></div>
 
 <header class="hero">
   <div class="wrap hero-grid">
     <figure class="hero-photo"><img src="assets/capa.webp" alt="Modelo usando três colares da coleção Oásis Urbano: cordão turquesa com esferas, cordão terracota com pedra azul e corrente com coração de jaspe laranja"></figure>
     <div class="hero-text">
-      <span class="eyebrow caps">Coleção · Varejo</span>
+      <span class="selo caps">Varejo</span>
       <h1 class="script">Oásis Urbano</h1>
       <div class="brand">Camila Damiani</div>
       <p class="lede">Desconecte-se do cinza e encontre o seu Oásis Urbano. Peças autorais com banho de 5 milésimos de ouro 18k e verniz italiano.</p>
@@ -397,7 +414,7 @@ body:has(#dock:not([hidden])) .rodape{padding-bottom:calc(96px + env(safe-area-i
 <div class="scrim" id="scrim" hidden></div>
 <aside class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="panelTitle" hidden>
   <div class="panel-head">
-    <h2 id="panelTitle">Sua sacola</h2>
+    <div class="panel-tit"><h2 id="panelTitle">Sua sacola</h2><span class="selo caps">Varejo</span></div>
     <button class="x" id="close" type="button" aria-label="Fechar sacola">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
     </button>
